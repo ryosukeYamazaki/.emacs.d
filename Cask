@@ -48,6 +48,9 @@
 (depends-on "helm-ag")
 (depends-on "helm-projectile")
 
+;; helm-git-grep
+(depends-on "helm-git-grep")
+
 ;; 空白表示
 (depends-on "whitespace")
 
@@ -69,7 +72,10 @@
 (depends-on "coffee-mode")
 
 ;; for javascript
-(depends-on "js2-mode")
+;;(depends-on "js2-mode")
+(depends-on "rjsx-mode")
+(depends-on "company-flow")
+(depends-on "flow-minor-mode")
 
 ;; mark down
 (depends-on "markdown-mode")

@@ -1,4 +1,11 @@
 ;; show-paren-mode：対応する括弧を強調して表示する
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (show-paren-mode t)
 (setq show-paren-delay 0) ;表示までの秒数。初期値は0.125
 (setq show-paren-style 'expression)    ;括弧内も強調
@@ -35,6 +42,10 @@
 
 ;; 括弧のペアとかは適宜入れて欲しい
 (electric-pair-mode t)
+
+;; ediffの設定
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
 
 ;; 空白表示
 (require 'whitespace)
@@ -79,6 +90,13 @@
 ;; git 用
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
+(require 'helm-git-grep) ;; Not necessary if installed by package.el
+(global-set-key (kbd "C-c g") 'helm-git-grep)
+;; Invoke `helm-git-grep' from isearch.
+(define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
+;; Invoke `helm-git-grep' from other helm.
+(eval-after-load 'helm
+  '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm))
 
 ;; ruby用
 ;; rbenv
@@ -124,8 +142,11 @@
   '(lambda() (coffee-custom)))
 
 ;; javascript用
-
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '(".*\\.js\\'" . rjsx-mode))
+;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'rjsx-mode 'flow-minor-mode)
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-flow))
 
 ;; コピペの設定を入れる
 (defun copy-from-osx ()
