@@ -112,6 +112,19 @@
 (add-hook 'ruby-mode-hook 'flycheck-mode)
 (require 'rubocop)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
+(flycheck-define-checker ruby-rubocop
+   "A Ruby syntax and style checker using the RuboCop tool."
+   :command ("rubocop" "--format" "emacs"
+             (config-file "--config" flycheck-rubocoprc)
+             source)
+   :error-patterns
+   ((warning line-start
+             (file-name) ":" line ":" column ": " (or "C" "W") ": " (message)
+             line-end)
+    (error line-start
+           (file-name) ":" line ":" column ": " (or "E" "F") ": " (message)
+           line-end))
+    :modes (ruby-mode motion-mode))
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 
@@ -121,7 +134,6 @@
 ;; rails用の設定
 (require 'projectile)
 (projectile-global-mode)
-(setq projectile-enable-caching t)
 (setq projectile-completion-system 'helm)
 
 (require 'helm-projectile)
