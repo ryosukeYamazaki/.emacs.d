@@ -145,6 +145,11 @@
 (add-to-list 'auto-mode-alist '(".*\\.js\\'" . rjsx-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'rjsx-mode 'flow-minor-mode)
+(add-hook 'rjsx-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil) ;;インデントはタブではなくスペース
+            (setq js-indent-level 2) ;;スペースは２つ、デフォルトは4
+            (setq js2-strict-missing-semi-warning nil))) ;;行末のセミコロンの警告はオフ
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-flow))
 
