@@ -33,8 +33,8 @@
 ;; auto-hightlight
 (depends-on "auto-highlight-symbol")
 
-;; solarized
-(depends-on "solarized-theme")
+;; color theme
+(depends-on "color-theme")
 
 ;; タグ
 (depends-on "ctags-update")

@@ -11,6 +11,10 @@
 (setq show-paren-style 'expression)    ;括弧内も強調
 (setq-default tab-width 2 indent-tabs-mode nil) ; タブはspace 2つで
 (global-auto-revert-mode 1) ; ファイルが更新されたらreloadする
+;; window moveを使うようにする
+;; https://www.emacswiki.org/emacs/WindMove
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 ;; cask
 ;; Macの場合
@@ -34,6 +38,9 @@
 ;; ctrl-hをバックスペースとして使う。
 (global-set-key "\C-h" 'delete-backward-char)
 
+;; indent-regionはよく使うのでkeymapを追加
+(global-set-key (kbd "C-M-¥") 'indent-region)
+
 ;; バッファの左側に行番号を表示する
 (global-linum-mode t)
 ;; 5 桁分の表示領域を確保する
@@ -42,6 +49,14 @@
 
 ;; 括弧のペアとかは適宜入れて欲しい
 (electric-pair-mode t)
+
+;; color theme
+(require 'color-theme)
+(color-theme-initialize)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(setq molokai-theme-kit t)
+(load-theme 'molokai t)
 
 ;; ediffの設定
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -164,6 +179,21 @@
             (setq js2-strict-missing-semi-warning nil))) ;;行末のセミコロンの警告はオフ
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-flow))
+(add-hook 'rjsx-mode-hook 'flycheck-mode)
+;; node_modules ディレクトリを探して、その中の node_modules/.bin/eslintをflychekに使う
+(defun my/use-eslint-from-node-modules ()
+  "http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable"
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+
 
 ;; コピペの設定を入れる
 (defun copy-from-osx ()
@@ -181,4 +211,3 @@
 
 ;; plantUML用の設定
 (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.13/libexec/plantuml.jar")
-
