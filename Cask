@@ -34,7 +34,10 @@
 (depends-on "auto-highlight-symbol")
 
 ;; color theme
-(depends-on "color-theme")
+;; (depends-on "color-theme")
+
+;; いろんなパッケージに対応したcoloer theme
+(depends-on "madhat2r-theme")
 
 ;; タグ
 (depends-on "ctags-update")
@@ -50,6 +53,7 @@
 
 ;; helm-git-grep
 (depends-on "helm-git-grep")
+(depends-on "helm-etags-plus")
 
 ;; 空白表示
 (depends-on "whitespace")

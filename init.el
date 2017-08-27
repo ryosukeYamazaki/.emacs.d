@@ -29,6 +29,8 @@
 ;; helmを使う設定を入れる
 (require 'helm-config)
 (helm-mode 1)
+;; コマンド検索に変更
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 ;; The Silver Searcher を使うための設定 silver -> ag
 (require 'helm-ag)
@@ -38,12 +40,9 @@
 ;; ctrl-hをバックスペースとして使う。
 (global-set-key "\C-h" 'delete-backward-char)
 
-;; indent-regionはよく使うのでkeymapを追加
-(global-set-key (kbd "C-M-¥") 'indent-region)
-
 ;; バッファの左側に行番号を表示する
 (global-linum-mode t)
-;; 5 桁分の表示領域を確保する
+;; 表示領域のフォーマットを確保する
 (setq linum-format "%d ")
 (column-number-mode t); 行番号と列番号を表示する
 
@@ -51,12 +50,7 @@
 (electric-pair-mode t)
 
 ;; color theme
-(require 'color-theme)
-(color-theme-initialize)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(setq molokai-theme-kit t)
-(load-theme 'molokai t)
+(load-theme 'madhat2r t)
 
 ;; ediffの設定
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -112,6 +106,14 @@
 ;; Invoke `helm-git-grep' from other helm.
 (eval-after-load 'helm
   '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm))
+(require 'helm-etags-plus)
+(global-set-key "\M-." 'helm-etags-plus-select)
+;;list all visited tags
+(global-set-key "\M-*" 'helm-etags-plus-history)
+;;go back directly
+(global-set-key "\M-," 'helm-etags-plus-history-go-back)
+;;go forward directly
+(global-set-key "\M-/" 'helm-etags-plus-history-go-forward)
 
 ;; ruby用
 ;; rbenv
@@ -142,6 +144,34 @@
     :modes (ruby-mode motion-mode))
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(add-hook 'ruby-mode-hook 'turn-on-ctags-auto-update-mode)
+(defun ruby-ctags-options-hook ()
+     (custom-set-variables
+      '(ctags-update-other-options
+        (list
+         "--exclude=log"
+         "--exclude=node_modules"
+         "--exclude=tmp"
+         "--exclude=stories"
+         "--exclude=*.coffee"
+         "--exclude='.git'"
+         "--exclude='.github'"
+         "--exclude='.storybook'"
+         "--exclude='.temp'"
+         "--exclude='front'"
+         "--exclude='app/assets'"
+         "--exclude='.svn'"
+         "--exclude='SCCS'"
+         "--exclude='RCS'"
+         "--exclude='CVS'"
+         "--exclude='EIFGEN'"
+         "--exclude='.#*'"
+         "--exclude='*~'")
+        )
+      '(ctags-update-command "ripper-tags")
+      )
+     )
+(add-hook 'ruby-mode-hook 'ruby-ctags-options-hook)
 
 ;; magic comment 無効
 (setq ruby-insert-encoding-magic-comment nil)
@@ -194,7 +224,6 @@
 (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
 
-
 ;; コピペの設定を入れる
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
@@ -208,6 +237,13 @@
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
 
+
+(require 'markdown-mode)
+(defun markdown-custom ()
+  (and (set (make-local-variable 'tab-width) 4))
+  )
+(add-hook 'markdown-mode
+  '(lambda() (markdown-custom)))
 
 ;; plantUML用の設定
 (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.13/libexec/plantuml.jar")
