@@ -26,6 +26,7 @@
 (depends-on "use-package")
 (depends-on "web-mode")
 (depends-on "yasnippet")
+(depends-on "yasnippet-snippets")
 
 ;; gitで変更されている箇所を表示してくれるやつ
 (depends-on "git-gutter")

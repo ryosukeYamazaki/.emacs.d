@@ -49,6 +49,17 @@
 ;; 括弧のペアとかは適宜入れて欲しい
 (electric-pair-mode t)
 
+;; yanipetの設定
+(require 'yasnippet)
+(yas/load-directory "~/.emacs.d/snippets")
+(yas-global-mode 1)
+;; 既存スニペットを挿入する
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+;; 新規スニペットを作成するバッファを用意する
+(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+;; 既存スニペットを閲覧・編集する
+(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+
 ;; color theme
 (load-theme 'madhat2r t)
 
@@ -112,8 +123,7 @@
 (global-set-key "\M-*" 'helm-etags-plus-history)
 ;;go back directly
 (global-set-key "\M-," 'helm-etags-plus-history-go-back)
-;;go forward directly
-(global-set-key "\M-/" 'helm-etags-plus-history-go-forward)
+
 
 ;; ruby用
 ;; rbenv
@@ -183,6 +193,7 @@
 
 (require 'helm-projectile)
 (helm-projectile-on)
+
 
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
