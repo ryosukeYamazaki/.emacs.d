@@ -1,11 +1,3 @@
-;; show-paren-mode：対応する括弧を強調して表示する
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (show-paren-mode t)
 (setq show-paren-delay 0) ;表示までの秒数。初期値は0.125
 (setq show-paren-style 'expression)    ;括弧内も強調
@@ -15,7 +7,6 @@
 ;; https://www.emacswiki.org/emacs/WindMove
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
-
 
 ;; gitの差分表示
 (global-git-gutter-mode t)
@@ -232,21 +223,6 @@
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-
-
-;; コピペの設定を入れる
-(defun copy-from-osx ()
-  (shell-command-to-string "pbpaste"))
-
-(defun paste-to-osx (text &optional push)
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
-
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
-
 
 (require 'markdown-mode)
 (defun markdown-custom ()
