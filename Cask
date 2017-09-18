@@ -28,6 +28,9 @@
 (depends-on "yasnippet")
 (depends-on "yasnippet-snippets")
 
+;; init loader
+(depends-on "init-loader")
+
 ;; gitで変更されている箇所を表示してくれるやつ
 (depends-on "git-gutter")
 
@@ -87,3 +90,6 @@
 
 ;; PlantUML
 (depends-on "plantuml-mode")
+
+;; go
+(depends-on "go-mode")
