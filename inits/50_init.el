@@ -74,8 +74,8 @@
                     :background "RoyalBlue4"
                     :underline nil)
 (set-face-attribute 'whitespace-tab nil
-                    :foreground "yellow4"
-                    :background "yellow4"
+                    :foreground "color-247"
+                    :background "color-234"
                     :underline nil)
 (set-face-attribute 'whitespace-space nil
                     :foreground "gray40"
@@ -184,10 +184,6 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 
-
-(require 'projectile-rails)
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
-
 ;; coffee用
 (require 'coffee-mode)
 (defun coffee-custom ()
@@ -205,8 +201,8 @@
 (add-hook 'rjsx-mode 'flow-minor-mode)
 (add-hook 'rjsx-mode-hook
           (lambda ()
-            (setq indent-tabs-mode nil) ;;インデントはタブではなくスペース
-            (setq js-indent-level 2) ;;スペースは２つ、デフォルトは4
+            (setq indent-tabs-mode nil)
+            (setq js-indent-level 2)
             (setq js2-strict-missing-semi-warning nil))) ;;行末のセミコロンの警告はオフ
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-flow))
@@ -234,6 +230,4 @@
 ;; plantUML用の設定
 (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.13/libexec/plantuml.jar")
 
-;; go
-(add-hook 'go-mode-hook (lambda ()
-                          (local-set-key (kbd "M-.") 'godef-jump)))
+

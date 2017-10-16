@@ -72,10 +72,6 @@
 (depends-on "rbenv")
 (depends-on "inf-ruby")
 
-
-;; rails
-(depends-on "projectile-rails")
-
 ;; for coffee
 (depends-on "coffee-mode")
 
@@ -93,3 +89,4 @@
 
 ;; go
 (depends-on "go-mode")
+(depends-on "company-go")
