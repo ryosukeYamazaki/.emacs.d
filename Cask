@@ -89,4 +89,5 @@
 
 ;; go
 (depends-on "go-mode")
+(depends-on "go-eldoc")
 (depends-on "company-go")

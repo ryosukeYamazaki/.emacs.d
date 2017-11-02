@@ -1,7 +1,6 @@
 (show-paren-mode t)
 (setq show-paren-delay 0) ;表示までの秒数。初期値は0.125
 (setq show-paren-style 'expression)    ;括弧内も強調
-(setq-default tab-width 2 indent-tabs-mode nil) ; タブはspace 2つで
 (global-auto-revert-mode 1) ; ファイルが更新されたらreloadする
 ;; window moveを使うようにする
 ;; https://www.emacswiki.org/emacs/WindMove
@@ -124,6 +123,9 @@
 (add-hook 'ruby-mode-hook 'flycheck-mode)
 (require 'rubocop)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
+(add-hook 'ruby-mode-hook
+          (lambda()
+            (setq tab-width 2 indent-tabs-mode nil)))
 (flycheck-define-checker ruby-rubocop
    "A Ruby syntax and style checker using the RuboCop tool."
    :command ("rubocop" "--format" "emacs"
@@ -176,7 +178,7 @@
 ;; magic comment 無効
 (setq ruby-insert-encoding-magic-comment nil)
 
-;; rails用の設定
+;; projectileの設定
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
