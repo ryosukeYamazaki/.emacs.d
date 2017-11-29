@@ -2,10 +2,6 @@
 (setq show-paren-delay 0) ;表示までの秒数。初期値は0.125
 (setq show-paren-style 'expression)    ;括弧内も強調
 (global-auto-revert-mode 1) ; ファイルが更新されたらreloadする
-;; window moveを使うようにする
-;; https://www.emacswiki.org/emacs/WindMove
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
 
 ;; gitの差分表示
 (global-git-gutter-mode t)

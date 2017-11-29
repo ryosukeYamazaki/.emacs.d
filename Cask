@@ -91,3 +91,4 @@
 (depends-on "go-mode")
 (depends-on "go-eldoc")
 (depends-on "company-go")
+(depends-on "go-rename")

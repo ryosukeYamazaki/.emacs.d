@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: review_template
+# key: rev
+# レビューをする時の動作をtemplateにする
+# --
+- [ ] title: $0 [/]
+  - [ ] 変更内容確認
+  - [ ] 動作確認
+  - [ ] 修正内容確認
+  - [ ] LGTM出す。
