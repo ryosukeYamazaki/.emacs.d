@@ -76,8 +76,10 @@
 (depends-on "coffee-mode")
 
 ;; for javascript
-;;(depends-on "js2-mode")
-(depends-on "rjsx-mode")
+;; (depends-on "js2-mode")
+;; (depends-on "rjsx-mode")
+(depends-on "web-mode")
+(depends-on "prettier-js")
 (depends-on "company-flow")
 (depends-on "flow-minor-mode")
 
