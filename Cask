@@ -44,7 +44,7 @@
 (depends-on "madhat2r-theme")
 
 ;; タグ
-(depends-on "ctags-update")
+;; (depends-on "ctags-update")
 
 ;; 補完
 (depends-on "company")
@@ -65,6 +65,9 @@
 ;; headerにpathを表示
 (depends-on "package-utils")
 (depends-on "path-headerline-mode")
+
+;; csv
+(depends-on "csv-mode")
 
 ;; ruby
 (depends-on "robe")
@@ -94,3 +97,11 @@
 (depends-on "go-eldoc")
 (depends-on "company-go")
 (depends-on "go-rename")
+(depends-on "go-guru")
+
+
+;; java
+(depends-on "meghanada")
+
+;; kotlin
+(depends-on "kotlin-mode")

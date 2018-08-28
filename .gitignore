@@ -8,3 +8,5 @@ recentf
 rake.cache
 projectile-bookmarks.eld
 projectile.cache
+/meghanada/*
+/eshell/*
