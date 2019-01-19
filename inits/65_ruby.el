@@ -1,16 +1,18 @@
 ;; ruby用
 ;; rbenv
-(require 'rbenv)
+(use-package rbenv :ensure t)
 (global-rbenv-mode)
 (setq rbenv-installation-dir "~/.rbenv")
+
+(add-hook 'ruby-mode-hook #'lsp)
 
 (add-hook 'ruby-mode-hook 'robe-mode)
 (eval-after-load 'company
   '(push 'company-robe company-backends))
-(require 'flycheck)
+
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
 ;; (add-hook 'ruby-mode-hook 'flycheck-mode)
-;; (require 'rubocop)
+;; (use-package 'rubocop)
 ;; (add-hook 'ruby-mode-hook 'rubocop-mode)
 (add-hook 'ruby-mode-hook
           (lambda()

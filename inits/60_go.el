@@ -2,10 +2,10 @@
 (add-to-list 'exec-path (expand-file-name "/Users/yamazaki-ryosuke/go/bin"))
 
 ;; 必要なパッケージのロード
-(require 'go-mode)
-(require 'company-go)
-(require 'go-eldoc)
-(require 'go-guru)
+(use-package go-mode :ensure t)
+(use-package company-go :ensure t)
+(use-package go-eldoc :ensure t)
+(use-package go-guru :ensure t)
 
 ;; 諸々の有効化、設定
 (add-hook 'go-mode-hook 'company-mode)

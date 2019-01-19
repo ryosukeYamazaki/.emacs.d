@@ -1,5 +1,5 @@
 ;; coffee用
-(require 'coffee-mode)
+(use-package coffee-mode :ensure t)
 (defun coffee-custom ()
   "coffee-mode-hook"
   (and (set (make-local-variable 'tab-width) 2)
