@@ -27,6 +27,7 @@
 (depends-on "web-mode")
 (depends-on "yasnippet")
 (depends-on "yasnippet-snippets")
+(depends-on "ag")
 
 ;; init loader
 (depends-on "init-loader")
@@ -66,8 +67,8 @@
 (depends-on "package-utils")
 (depends-on "path-headerline-mode")
 
-;; csv
 (depends-on "csv-mode")
+(depends-on "sql-indent")
 
 ;; ruby
 (depends-on "robe")
