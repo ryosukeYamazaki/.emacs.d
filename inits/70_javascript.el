@@ -18,7 +18,6 @@
   (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
   (add-to-list 'web-mode-indentation-params '("case-extra-offset" . nil))
   )
-
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
 (setq web-mode-content-types-alist

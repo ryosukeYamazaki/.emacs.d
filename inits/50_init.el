@@ -105,7 +105,7 @@
 (add-hook 'after-init-hook 'global-auto-highlight-symbol-mode)
 
 (use-package helm-ag :ensure t)
-(use-package helm-projectile :ensure t)
+
 ;; git 用
 (use-package magit :ensure t)
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -116,28 +116,10 @@
 ;; Invoke `helm-git-grep' from other helm.
 (eval-after-load 'helm
   '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm))
-(use-package helm-etags-plus :ensure t)
-(global-set-key "\M-." 'helm-etags-plus-select)
-;;list all visited tags
-(global-set-key "\M-*" 'helm-etags-plus-history)
-;;go back directly
-(global-set-key "\M-," 'helm-etags-plus-history-go-back)
-
-
-
-;; projectileの設定
-;; (require 'projectile)
-;; (projectile-global-mode)
-;; (setq projectile-completion-system 'helm)
-;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
-;; (require 'helm-projectile)
-;; (helm-projectile-on)
-(use-package lsp-mode :ensure t)
 
 (use-package flycheck  :ensure t)
 ;; plantUML用の設定
 (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.13/libexec/plantuml.jar")
 
 
+(use-package company :ensure t)

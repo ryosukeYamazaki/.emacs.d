@@ -1,8 +1,11 @@
 /auto-save-list
 *~
+.lsp-session-v1
+/todo
 \#*
 /elpa
 /elpa-*
+/.cache/
 /.cask/
 recentf
 rake.cache

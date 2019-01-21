@@ -4,16 +4,10 @@
 (global-rbenv-mode)
 (setq rbenv-installation-dir "~/.rbenv")
 
-(add-hook 'ruby-mode-hook #'lsp)
-
-(add-hook 'ruby-mode-hook 'robe-mode)
-(eval-after-load 'company
-  '(push 'company-robe company-backends))
-
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
-;; (add-hook 'ruby-mode-hook 'flycheck-mode)
-;; (use-package 'rubocop)
-;; (add-hook 'ruby-mode-hook 'rubocop-mode)
+(add-hook 'ruby-mode-hook 'flycheck-mode)
+(use-package rubocop :ensure t)
+(add-hook 'ruby-mode-hook 'rubocop-mode)
 (add-hook 'ruby-mode-hook
           (lambda()
             (setq tab-width 2 indent-tabs-mode nil)))
@@ -22,7 +16,6 @@
              (setq flycheck-checker 'ruby-rubocop)
              (flycheck-mode 1)))
 (flycheck-define-checker ruby-rubocop
-   "A Ruby syntax and style checker using the RuboCop tool."
    :command ("rubocop" "--display-cop-names" "--format" "emacs"
              (option-flag "--lint" flycheck-rubocop-lint-only)
              "--stdin" source-original)
@@ -36,42 +29,10 @@
            (file-name) ":" line ":" column ": " (or "E" "F") ": " (message)
            line-end))
    :modes (ruby-mode motion-mode))
-;; (defun set-rubocop-wrapper-hook ()
-;;   (setq flycheck-command-wrapper-function
-;;         (lambda (command) (append '("bundle" "exec") command)))
-;;   )
-;; (add-hook 'ruby-mode-hook 'set-rubocop-wrapper-hook)
-(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
-(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
-;; (add-hook 'ruby-mode-hook 'turn-on-ctags-auto-update-mode)
-;; (defun ruby-ctags-options-hook ()
-;;      (custom-set-variables
-;;       '(ctags-update-other-options
-;;         (list
-;;          "--exclude=log"
-;;          "--exclude=node_modules"
-;;          "--exclude=tmp"
-;;          "--exclude=stories"
-;;          "--exclude=*.coffee"
-;;          "--exclude='.git'"
-;;          "--exclude='.github'"
-;;          "--exclude='.storybook'"
-;;          "--exclude='.temp'"
-;;          "--exclude='front'"
-;;          "--exclude='app/assets'"
-;;          "--exclude='.svn'"
-;;          "--exclude='SCCS'"
-;;          "--exclude='RCS'"
-;;          "--exclude='CVS'"
-;;          "--exclude='EIFGEN'"
-;;          "--exclude='.#*'"
-;;          "--exclude='*~'")
-;;         )
-;;       '(ctags-update-command "ripper-tags")
-;;       )
-;;      )
-;; (add-hook 'ruby-mode-hook 'ruby-ctags-options-hook)
 
 ;; magic comment 無効
 (setq ruby-insert-encoding-magic-comment nil)
 (custom-set-variables '(ruby-insert-encoding-magic-comment nil))
+
+(add-hook 'ruby-mode-hook 'lsp)
+(add-hook 'ruby-mode-hook 'lsp-ui-mode)
