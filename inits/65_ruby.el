@@ -16,6 +16,7 @@
              (setq flycheck-checker 'ruby-rubocop)
              (flycheck-mode 1)))
 (flycheck-define-checker ruby-rubocop
+   "ruby rubocop setting"
    :command ("rubocop" "--display-cop-names" "--format" "emacs"
              (option-flag "--lint" flycheck-rubocop-lint-only)
              "--stdin" source-original)
@@ -29,6 +30,11 @@
            (file-name) ":" line ":" column ": " (or "E" "F") ": " (message)
            line-end))
    :modes (ruby-mode motion-mode))
+(defun set-rubocop-wrapper-hook ()
+  (setq flycheck-command-wrapper-function
+        (lambda (command) (append '("bundle" "exec") command)))
+  )
+(add-hook 'ruby-mode-hook 'set-rubocop-wrapper-hook)
 
 ;; magic comment 無効
 (setq ruby-insert-encoding-magic-comment nil)

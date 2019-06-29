@@ -25,7 +25,7 @@
 (helm-mode 1)
 ;; コマンド検索に変更
 (global-set-key (kbd "M-x") 'helm-M-x)
-
+(use-package ag :ensure t)
 ;; The Silver Searcher を使うための設定 silver -> ag
 (use-package helm-ag :ensure t)
 (setq helm-ag-base-command "ag --nocolor --nogrou")

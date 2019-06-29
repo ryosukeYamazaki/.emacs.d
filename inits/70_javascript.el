@@ -1,5 +1,7 @@
+(use-package web-mode :ensure t)
 (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.es$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -31,6 +33,16 @@
       ad-do-it)
      ad-do-it))
 
+;; .jsファイルなどでjs2-jsx-modeを有効にする
+;; (use-package js2-mode :ensure t)
+;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-jsx-mode))
+
+;; (use-package flow-minor-mode :ensure t)
+
+;; js2-jsx-modeでflycheckを有効にする
+;; (flycheck-add-mode 'javascript-eslint 'js2-jsx-mode)
+;; (add-hook 'js2-jsx-mode-hook 'flycheck-mode)
+(use-package prettier-js :ensure t)
 (defun my/use-prettier-from-node-modules ()
   "use node_modules/.bin/prettier if exists"
   (let* ((root (locate-dominating-file
@@ -43,3 +55,8 @@
       (setq-local prettier-js-command prettier))))
 (add-hook 'prettier-js-mode-hook #'my/use-prettier-from-node-modules)
 (add-hook 'web-mode-hook 'prettier-js-mode)
+
+;; (add-hook 'js2-mode-hook 'prettier-js-mode)
+;; (add-hook 'js2-mode-hook 'flycheck-mode)
+;; (add-hook 'js2-mode-hook 'lsp)
+;; (add-hook 'js2-mode-hook 'lsp-ui-mode)
