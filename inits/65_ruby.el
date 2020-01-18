@@ -41,4 +41,3 @@
 (custom-set-variables '(ruby-insert-encoding-magic-comment nil))
 
 (add-hook 'ruby-mode-hook 'lsp)
-(add-hook 'ruby-mode-hook 'lsp-ui-mode)

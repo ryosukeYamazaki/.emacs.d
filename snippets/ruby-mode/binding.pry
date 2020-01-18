@@ -1,0 +1,5 @@
+# -*- mode: ruby-mode -*-
+# name: binding.pry
+# key: pry
+# --
+binding.pry

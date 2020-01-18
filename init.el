@@ -25,6 +25,30 @@
   :ensure t
   :config
   (init-loader-load "~/.emacs.d/inits"))
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(package-selected-packages
+;;    (quote
+;;     (treemacs-icons-dired treemacs-evil lsp-mode helm-egats-plus helm-git-grep magit helm-projectile auto-highlight-symbol path-headerline-mode coffee-mode helm-ag helm-config git-gutter madhat2r-theme init-loader use-package)))
+;;  '(ruby-insert-encoding-magic-comment nil)
+;;  '(safe-local-variable-values
+;;    (quote
+;;     ((eval setq flycheck-command-wrapper-function
+;; 	   (lambda
+;; 	     (command)
+;; 	     (append
+;; 	      (quote
+;; 	       ("bundle" "exec"))
+;; 	      command)))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -32,20 +56,5 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-mode helm-egats-plus helm-git-grep magit helm-projectile auto-highlight-symbol path-headerline-mode coffee-mode helm-ag helm-config git-gutter madhat2r-theme init-loader use-package)))
- '(ruby-insert-encoding-magic-comment nil t)
- '(safe-local-variable-values
-   (quote
-    ((eval setq flycheck-command-wrapper-function
-	   (lambda
-	     (command)
-	     (append
-	      (quote
-	       ("bundle" "exec"))
-	      command)))))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+    (yasnippet yaml-mode web-mode use-package treemacs-projectile treemacs-icons-dired treemacs-evil rubocop rbenv prettier-js path-headerline-mode magit madhat2r-theme lsp-ui lsp-treemacs init-loader helm-projectile helm-lsp helm-git-grep helm-ag go-guru go-eldoc git-gutter flycheck dap-mode csv-mode company-lsp company-go coffee-mode auto-highlight-symbol ag)))
+ '(ruby-insert-encoding-magic-comment nil t))
