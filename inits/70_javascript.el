@@ -49,7 +49,7 @@
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
          (prettier (and root
-                      (expand-file-name "node_modules/.bin/prettier"
+                      (expand-file-name "node_modules/.bin/eslint --fix"
                                         root))))
     (when (and prettier (file-executable-p prettier))
       (setq-local prettier-js-command prettier))))
