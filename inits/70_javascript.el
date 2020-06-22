@@ -32,31 +32,32 @@
     (let ((web-mode-enable-part-face nil))
       ad-do-it)
      ad-do-it))
+(use-package add-node-modules-path :ensure t)
+(add-hook 'web-mode-hook 'add-node-modules-path)
+(add-hook 'web-mode-hook 'lsp)
 
-;; .jsファイルなどでjs2-jsx-modeを有効にする
-;; (use-package js2-mode :ensure t)
-;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-jsx-mode))
+(defun eslint-fix-file ()
+  (interactive)
+  (message "eslint --fixing the file" (buffer-file-name))
+  (shell-command (concat "eslint --fix " (buffer-file-name))))
 
-;; (use-package flow-minor-mode :ensure t)
+(defun eslint-fix-file-and-revert ()
+  (interactive)
+  (eslint-fix-file)
+  (revert-buffer t t))
 
-;; js2-jsx-modeでflycheckを有効にする
-;; (flycheck-add-mode 'javascript-eslint 'js2-jsx-mode)
-;; (add-hook 'js2-jsx-mode-hook 'flycheck-mode)
-(use-package prettier-js :ensure t)
-(defun my/use-prettier-from-node-modules ()
-  "use node_modules/.bin/prettier if exists"
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (prettier (and root
-                      (expand-file-name "node_modules/.bin/eslint --fix"
-                                        root))))
-    (when (and prettier (file-executable-p prettier))
-      (setq-local prettier-js-command prettier))))
-(add-hook 'prettier-js-mode-hook #'my/use-prettier-from-node-modules)
-(add-hook 'web-mode-hook 'prettier-js-mode)
-
-;; (add-hook 'js2-mode-hook 'prettier-js-mode)
-;; (add-hook 'js2-mode-hook 'flycheck-mode)
-;; (add-hook 'js2-mode-hook 'lsp)
-;; (add-hook 'js2-mode-hook 'lsp-ui-mode)
+(add-hook 'web-mode-hook
+	  (lambda ()
+	    (add-hook 'after-save-hook #'eslint-fix-file-and-revert)))
+;; (defun my/use-prettier-from-node-modules ()
+;;   "use node_modules/.bin/prettier if exists"
+;;   (let* ((root (locate-dominating-file
+;;                 (or (buffer-file-name) default-directory)
+;;                 "node_modules"))
+;;          (prettier (and root
+;; 			(expand-file-name "node_modules/.bin/eslint --fix"
+;; 					  root))))
+;;     (when (and prettier (file-executable-p prettier))
+;;       (setq-local prettier-js-command prettier))))
+;; (add-hook 'prettier-js-mode-hook #'my/use-prettier-from-node-modules)
+;; (add-hook 'web-mode-hook 'prettier-js-mode)

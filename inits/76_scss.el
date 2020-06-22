@@ -1,4 +1,9 @@
 ;;; scss config --- css mode config
 
 ;;; Commentary: css mode config
-(setq tab-width 2 indent-tabs-mode nil)
+(defun scss-custom-hook ()
+  (setq indent-tabs-mode nil)
+  (setq css-indent-offset 2)
+)
+
+(add-hook 'scss-mode-hook 'scss-custom-hook)
