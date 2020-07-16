@@ -38,8 +38,8 @@
 
 (defun eslint-fix-file ()
   (interactive)
-  (message "eslint --fixing the file" (buffer-file-name))
-  (shell-command (concat "eslint --fix " (buffer-file-name))))
+  (message "yarn -s run eslint --fix %s" (buffer-file-name))
+  (async-shell-command (concat "yarn -s run eslint --fix " (buffer-file-name))))
 
 (defun eslint-fix-file-and-revert ()
   (interactive)
