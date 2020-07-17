@@ -43,7 +43,7 @@
 (defun rubocop-fix-file ()
   (interactive)
   (message "bundle exec rubocop -a %s" (buffer-file-name))
-  (async-shell-command (concat "bundle exec rubocop -a  " (buffer-file-name))))
+  (async-shell-command (concat "bundle exec rubocop -a " (buffer-file-name))))
 
 (defun rubocop-fix-file-and-revert ()
   (interactive)
