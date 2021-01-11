@@ -17,6 +17,7 @@
 ;; (require 'git-gutter)
 (global-git-gutter-mode t)
 
+(use-package which-key :ensure t)
 
 ;; helmを使う設定を入れる
 ;; (unless (require 'helm-config nil t)
@@ -105,6 +106,8 @@
 (add-hook 'after-init-hook 'global-auto-highlight-symbol-mode)
 
 (use-package helm-ag :ensure t)
+(use-package helm-rg :ensure t)
+(use-package ripgrep :ensure t)
 
 ;; git 用
 (use-package magit :ensure t)

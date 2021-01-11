@@ -1,0 +1,7 @@
+# -*- mode: org -*-
+# name: source block
+# key: src
+# --
+
+#+BEGIN_SRC:
+#+END_SRC
