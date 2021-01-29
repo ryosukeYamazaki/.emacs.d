@@ -13,3 +13,5 @@ projectile-bookmarks.eld
 projectile.cache
 /meghanada/*
 /eshell/*
+tramp
+transient/*
