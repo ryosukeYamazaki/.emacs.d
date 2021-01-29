@@ -120,9 +120,18 @@
 (eval-after-load 'helm
   '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm))
 
-(use-package flycheck  :ensure t)
-;; plantUML用の設定
-(setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.13/libexec/plantuml.jar")
+(use-package flycheck :ensure t)
+(global-flycheck-mode)
 
+(use-package which-key :ensure t)
+(which-key-mode)
+
+;; plantUML用の設定
+;; (setq plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.13/libexec/plantuml.jar")
+
+;; 非同期実行した結果は表示しない。rubocopが走ったりしてwindowsがぽこぽこ立ち上がるのを防ぐ。
+;; (add-to-list
+;;  'display-buffer-alist
+;;  (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
 
 (use-package company :ensure t)
