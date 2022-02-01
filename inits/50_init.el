@@ -22,15 +22,16 @@
 ;; helmを使う設定を入れる
 ;; (unless (require 'helm-config nil t)
 ;;   (package-install 'helm-config))
-(use-package helm :ensure t)
-(helm-mode 1)
+;; (use-package helm :ensure t)
+;; (helm-mode 1)
 ;; コマンド検索に変更
-(global-set-key (kbd "M-x") 'helm-M-x)
+;; (global-set-key (kbd "M-x") 'helm-M-x)
 (use-package ag :ensure t)
 ;; The Silver Searcher を使うための設定 silver -> ag
-(use-package helm-ag :ensure t)
-(setq helm-ag-base-command "ag --nocolor --nogrou")
-(global-set-key (kbd "C-c s") 'helm-ag)
+;; (use-package helm-ag :ensure t)
+;; (setq helm-ag-base-command "ag --nocolor --nogrou")
+;; (global-set-key (kbd "C-c s") 'helm-ag)
+
 
 ;; ctrl-hをバックスペースとして使う。
 (global-set-key "\C-h" 'delete-backward-char)
@@ -111,6 +112,12 @@
 
 ;; git 用
 (use-package magit :ensure t)
+;; (use-package magit-delta
+;;       :ensure t
+;;       :hook (magit-mode . magit-delta-mode))
+(with-eval-after-load "magit"
+  (setq magit-completing-read-function 'ivy-completing-read))
+
 (global-set-key (kbd "C-x g") 'magit-status)
 (use-package helm-git-grep :ensure t)
 (global-set-key (kbd "C-c g") 'helm-git-grep)

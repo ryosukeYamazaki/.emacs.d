@@ -3,9 +3,6 @@
 
 ;; 必要なパッケージのロード
 (use-package go-mode :ensure t)
-(use-package company-go :ensure t)
-(use-package go-eldoc :ensure t)
-(use-package go-guru :ensure t)
 
 ;; 諸々の有効化、設定
 (add-hook 'go-mode-hook 'company-mode)
@@ -20,8 +17,7 @@
                           (add-hook 'before-save-hook 'gofmt-before-save)
                           (local-set-key (kbd "M-.") 'godef-jump)
                           (local-set-key (kbd "M-,") 'pop-tag-mark)
-                          (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)
-                          (setq indent-tabs-mode nil)    ; タブを利用
-                          (setq c-basic-offset 2)        ; tabサイズを2にする
+                          ;(setq indent-tabs-mode nil)    ; タブを利用
+                          ;(setq c-basic-offset 2)        ; tabサイズを2にする
                           (setq tab-width 2)))

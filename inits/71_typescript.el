@@ -1,3 +1,28 @@
 (use-package web-mode :ensure t)
 (add-to-list 'auto-mode-alist '("\\.ts?$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx?$" . web-mode))
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-enable-auto-indentation nil)
+  (setq web-mode-attr-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-sql-indent-offset 2)
+  (setq indent-tabs-mode nil)
+  (setq tab-width 2)
+  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-quotes" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
+  (add-to-list 'web-mode-indentation-params '("case-extra-offset" . nil))
+  )
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+
+(use-package add-node-modules-path :ensure t)
+(add-hook 'web-mode-hook 'add-node-modules-path)
+(add-hook 'web-mode-hook 'lsp)
+(add-to-list 'exec-path "./node_modules/.bin")
+

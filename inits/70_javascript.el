@@ -35,6 +35,7 @@
 (use-package add-node-modules-path :ensure t)
 (add-hook 'web-mode-hook 'add-node-modules-path)
 (add-hook 'web-mode-hook 'lsp)
+(add-to-list 'exec-path "./node_modules/.bin")
 
 ;; (defun eslint-fix-file ()
 ;;   (interactive)

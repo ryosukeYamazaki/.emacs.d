@@ -8,10 +8,6 @@
 	("org" . "http://orgmode.org/elpa/")
 	)
       )
-;; caskの読み込み
-;; (if (eq system-type 'gnu/linux) (require 'cask "~/.cask/cask.el"))  ; Linuxの場合
-;; (if (eq system-type 'darwin) (require 'cask)) ; macの場合
-;; (cask-initialize)
 
 (unless package-archive-contents
   (package-refresh-contents))
@@ -54,8 +50,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(indent-tabs-mode nil)
  '(package-selected-packages
    (quote
-    (mozc helm-rg yasnippet yaml-mode web-mode use-package treemacs-projectile treemacs-icons-dired treemacs-evil rubocop rbenv prettier-js path-headerline-mode magit madhat2r-theme lsp-ui lsp-treemacs init-loader helm-projectile helm-lsp helm-git-grep helm-ag go-guru go-eldoc git-gutter flycheck dap-mode csv-mode company-lsp company-go coffee-mode auto-highlight-symbol ag)))
- '(ruby-insert-encoding-magic-comment nil t))
+    (counsel-projectile counsel ivy mozc helm-rg yasnippet yaml-mode web-mode use-package treemacs-projectile treemacs-icons-dired treemacs-evil rubocop rbenv prettier-js path-headerline-mode magit madhat2r-theme lsp-ui lsp-treemacs init-loader helm-projectile helm-lsp helm-git-grep helm-ag go-guru go-eldoc git-gutter flycheck dap-mode csv-mode company-lsp company-go coffee-mode auto-highlight-symbol ag)))
+ '(ruby-insert-encoding-magic-comment nil t)
+ '(tab-width 2))
 (put 'upcase-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
