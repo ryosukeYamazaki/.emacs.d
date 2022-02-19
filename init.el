@@ -53,7 +53,7 @@
  '(indent-tabs-mode nil)
  '(package-selected-packages
    (quote
-    (counsel-projectile counsel ivy mozc helm-rg yasnippet yaml-mode web-mode use-package treemacs-projectile treemacs-icons-dired treemacs-evil rubocop rbenv prettier-js path-headerline-mode magit madhat2r-theme lsp-ui lsp-treemacs init-loader helm-projectile helm-lsp helm-git-grep helm-ag go-guru go-eldoc git-gutter flycheck dap-mode csv-mode company-lsp company-go coffee-mode auto-highlight-symbol ag)))
+    (cargo rust-mode counsel-projectile counsel ivy mozc helm-rg yasnippet yaml-mode web-mode use-package treemacs-projectile treemacs-icons-dired treemacs-evil rubocop rbenv prettier-js path-headerline-mode magit madhat2r-theme lsp-ui lsp-treemacs init-loader helm-projectile helm-lsp helm-git-grep helm-ag go-guru go-eldoc git-gutter flycheck dap-mode csv-mode company-lsp company-go coffee-mode auto-highlight-symbol ag)))
  '(ruby-insert-encoding-magic-comment nil t)
  '(tab-width 2))
 (put 'upcase-region 'disabled nil)
