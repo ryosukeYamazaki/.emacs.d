@@ -11,13 +11,8 @@
 
 (setq lsp-headerline-breadcrumb-mode t)
 (setq lsp-headerline-breadcrumb-enable-symbol-numbers t)
-(use-package company-lsp
-  :ensure t
-  )
-(use-package helm-lsp :commands helm-lsp-workspace-symbol :ensure t)
 (use-package hydra :ensure t)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list :ensure t)
-(push 'company-lsp company-backends)
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1)))
   )

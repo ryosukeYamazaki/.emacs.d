@@ -19,19 +19,7 @@
 
 (use-package which-key :ensure t)
 
-;; helmを使う設定を入れる
-;; (unless (require 'helm-config nil t)
-;;   (package-install 'helm-config))
-;; (use-package helm :ensure t)
-;; (helm-mode 1)
-;; コマンド検索に変更
-;; (global-set-key (kbd "M-x") 'helm-M-x)
 (use-package ag :ensure t)
-;; The Silver Searcher を使うための設定 silver -> ag
-;; (use-package helm-ag :ensure t)
-;; (setq helm-ag-base-command "ag --nocolor --nogrou")
-;; (global-set-key (kbd "C-c s") 'helm-ag)
-
 
 ;; ctrl-hをバックスペースとして使う。
 (global-set-key "\C-h" 'delete-backward-char)
@@ -106,8 +94,6 @@
 (global-auto-highlight-symbol-mode t)
 (add-hook 'after-init-hook 'global-auto-highlight-symbol-mode)
 
-(use-package helm-ag :ensure t)
-(use-package helm-rg :ensure t)
 (use-package ripgrep :ensure t)
 
 ;; git 用
@@ -119,13 +105,6 @@
   (setq magit-completing-read-function 'ivy-completing-read))
 
 (global-set-key (kbd "C-x g") 'magit-status)
-(use-package helm-git-grep :ensure t)
-(global-set-key (kbd "C-c g") 'helm-git-grep)
-;; Invoke `helm-git-grep' from isearch.
-(define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
-;; Invoke `helm-git-grep' from other helm.
-(eval-after-load 'helm
-  '(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm))
 
 (use-package flycheck :ensure t)
 (global-flycheck-mode)
@@ -141,4 +120,7 @@
 ;;  'display-buffer-alist
 ;;  (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
 
-(use-package company :ensure t)
+(use-package company
+  :ensure t
+  :config
+  (setq lsp-completion-provider :capf))
